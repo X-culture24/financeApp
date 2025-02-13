@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #f3e5f5, #e0f2f7); /* Light purple to light green gradient */
+            color: #4a148c; /* Dark purple text */
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #6a1b9a; /* Purple heading */
+            text-align: center;
+        }
+        h2, h3 {
+            color: #00796b; /* Teal-green subheadings */
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .bill-status {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .bill-status p {
+            margin: 0;
+            font-size: 1.1em;
+        }
+        .bill-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .bill-list li {
+            background: #f8f8f8;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .bill-list li span.paid {
+            color: #388e3c; /* Green for paid bills */
+            font-weight: bold;
+        }
+        .bill-list li a {
+            color: #d32f2f; /* Red for unpaid bills */
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .bill-list li a:hover {
+            text-decoration: underline;
+        }
+        .actions {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .actions a {
+            background: #6a1b9a; /* Purple button */
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 0 10px;
+            transition: 0.3s;
+        }
+        .actions a:hover {
+            background: #8e24aa; /* Darker purple on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ user.firstname }} {{ user.lastname }}!</h1>
+        <p>Monthly Budget: ${{ user.budget }}</p>
+
+        <h2>Bill Status</h2>
+        <div class="bill-status">
+            <p>Total Bills: ${{ dashboard.total_bills }}</p>
+            <p>Paid Bills: ${{ dashboard.paid_bills }}</p>
+            <p>Unpaid Bills: ${{ dashboard.unpaid_bills }}</p>
+        </div>
+
+        <h3>Your Bills</h3>
+        <ul class="bill-list">
+            {% for bill in bills %}
+                <li>
+                    <span>{{ bill.bill_type }} - ${{ bill.amount }} (Due: {{ bill.due_date }})</span>
+                    {% if bill.is_paid %}
+                        <span class="paid">Paid</span>
+                    {% else %}
+                        <a href="{% url 'mark_paid' bill.id %}">Mark as Paid</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <div class="actions">
+            <a href="{% url 'add_bill' %}">Add New Bill</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
+    </div>
+</body>
+</html>

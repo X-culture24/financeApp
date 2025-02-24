@@ -27,23 +27,23 @@ $ cd financeApp
 #### **Step 2: Create a Virtual Environment**
 ##### **On Linux/macOS:**
 ```sh
-$ python3 -m venv myworld
-$ source myworld/bin/activate
+python3 -m venv myworld
+source myworld/bin/activate
 ```
 ##### **On Windows:**
 ```sh
-$ python -m venv myworld
-$ myworld\Scripts\activate
+ python -m venv myworld
+ myworld\Scripts\activate
 ```
 
 #### **Step 3: Install Dependencies**
 ```sh
-$ pip install -r requirements.txt
+ pip install -r requirements.txt
 ```
 
 #### **Step 4: Apply Migrations**
 ```sh
-$ python manage.py migrate
+python manage.py migrate
 ```
 
 #### **Step 5: Run the Development Server**

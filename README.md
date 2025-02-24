@@ -38,7 +38,7 @@ source myworld/bin/activate
 
 #### **Step 3: Install Dependencies**
 ```sh
- pip install -r requirements.txt
+ pip install django
 ```
 
 #### **Step 4: Apply Migrations**
@@ -56,8 +56,7 @@ Now, open your browser and go to `http://127.0.0.1:8000/` to access the applicat
 ```
 financeApp/
 │── manage.py          # Django project manager
-│── db.sqlite3         # Database (SQLite by default)
-│── requirements.txt   # Project dependencies
+│── db.sqlite3         # Database (SQLite by default)                    # Project dependencies
 │── financeApp/        # Main project settings
 │   ├── settings.py    # Configuration file
 │   ├── urls.py        # URL routing
